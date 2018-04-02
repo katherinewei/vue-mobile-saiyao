@@ -1,0 +1,39 @@
+.flex_cart{
+  display: flex;
+  padding-bottom: 40px;
+  .flexItem{
+    flex: 1;
+    .img{
+      width:70%;
+      margin: -80px auto 0;
+      img{
+        width:100%;
+        border:2px solid #dddddd;
+      }
+    }
+    .text{
+      font-size: 30px;
+      padding: 20px 0;
+      p{
+        padding-bottom: 10px;
+      }
+      .price{
+        &:before{
+          content: '￥';
+        }
+        color: #ea3526;
+      }
+      .stock{
+        color: #999;
+        font-size: 22px;
+      }
+    }
+
+  }
+}
+.numberBox.weui-cell{
+  padding-bottom: 100px;
+  &:before{
+    left:0;
+  }
+}
