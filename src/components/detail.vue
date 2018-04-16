@@ -1,6 +1,6 @@
 <template>
   <div >
-    <div v-if="item.product_id">
+    <div v-if="item.product_id || item.object_id">
       <img
         :src="item.imgs"
         alt=""
@@ -64,11 +64,7 @@
       <addCart :market="this.$route.query.activity" />
     </div>
     <div v-else>
-      <msg title="商品已下架" icon="info" :buttons="[{
-        type: 'primary',
-        text: '返回',
-        onClick: this.$router.go(-1)
-      }]"> </msg>
+      <msg title="商品已下架" icon="info" :buttons="buttons"> </msg>
     </div>
   </div>
 </template>
@@ -89,7 +85,12 @@
     data () {
       return {
         cartNum: 0,
-        urlHome: '/micro'
+        urlHome: '/micro',
+        buttons: [{
+          type: 'primary',
+          text: '返回',
+          onClick: this.goBack.bind(this)
+        }]
       }
     },
     mounted () {
@@ -117,6 +118,9 @@
         'setCartModal',
         'setCartCurrentValue'
       ]),
+      goBack () {
+        this.$router.go(-1)
+      },
       getProduct: function () {
         const productId = this.$route.query.id
         const market = this.$route.query.activity

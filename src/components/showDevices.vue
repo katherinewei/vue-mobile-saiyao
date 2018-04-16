@@ -109,7 +109,7 @@
       // 如果路由有变化，会执行该方法
       '$route': function () {
         const id = this.$route.params.id
-        this.$store.dispatch('getItems', {id}).then(this.closeModal)
+        this.$store.dispatch('getProducts', {id}).then(this.closeModal)
        // this.routeChange()
       }
     },

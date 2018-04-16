@@ -136,8 +136,12 @@
         setAccessOperatorId(this.$route.query.oid)
       }
       this.getPage()
+      localStorage.setItem('entry','device')
     },
     methods: {
+      ...mapMutations([
+        'setFootMenu'
+      ]),
       getPage: function () {
         const $this = this
         let operatorId = getAccessOperatorId()
@@ -148,6 +152,33 @@
         const payload = {operator_id: getAccessOperatorId()}
         const url = URL.store_page
         const response = (data) => {
+          const newMenu = JSON.parse(data.menu)
+          const menus = [
+            {
+              title: '店铺首页',
+              key: 'home',
+              icon: require('../assets/staticIcon/homeUp.png'),
+              selectIcon: require('../assets/staticIcon/homeDown.png')
+            },
+            {
+              title: '机台自提',
+              key: 'market',
+              icon: require('../assets/staticIcon/activityUp.png'),
+              selectIcon: require('../assets/staticIcon/activityDown.png')
+            },
+            {
+              title: '个人中心',
+              key: 'user',
+              icon: require('../assets/staticIcon/userUp.png'),
+              selectIcon: require('../assets/staticIcon/userDown.png')
+            }
+          ]
+          newMenu.map((item, i) => {
+            menus[i].title = item.name || menus[i].title
+            menus[i].icon = item.img || menus[i].icon
+            menus[i].selectIcon = item.imgActive || menus[i].selectIcon
+          })
+          $this.setFootMenu({menu: menus})
           let pageConfig = data.page
           let page = pageConfig && pageConfig !== 'object' && JSON.parse(pageConfig)
           page = page instanceof Array ? page : []
@@ -192,8 +223,6 @@
             return items
           })
           $this.products = res.results
-         // $this.index = index
-          console.log($this.index)
         }
         payload.operator_id = getAccessOperatorId()
         const products = {url: URL.store_products, payload, response}
@@ -305,10 +334,6 @@
         console.log(item)
         localStorage.setItem('hotItem', JSON.stringify(item))
       },
-      ...mapMutations([
-        'setCartModal',
-        'setCartCurrentValue'
-      ]),
       onItemsClick: function (item) {
         const cart = localStorage.getItem('cart')
         if (cart && JSON.parse(cart).length > 9) {

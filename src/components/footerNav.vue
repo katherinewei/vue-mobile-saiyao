@@ -1,6 +1,6 @@
 <template>
   <tabbar style="position: fixed" v-show="showNav">
-    <tabbar-item :selected="selectIndex == i"  :link="`/${item.key}`" v-for="(item,i) in tabs" :key="i">
+    <tabbar-item :selected="selectIndex == i"  :link="`/micro/${item.key}`" v-for="(item,i) in menu" :key="i">
       <img slot="icon" :src="item.icon">
       <img slot="icon-active" :src="item.selectIcon">
       <span slot="label">{{item.title}}</span>
@@ -9,6 +9,7 @@
 </template>
 <script>
   import {Tabbar, TabbarItem} from 'vux'
+  import { mapState } from 'vuex'
   export default {
     components: {
       Tabbar,
@@ -16,25 +17,6 @@
     },
     data () {
       return {
-        tabs: [
-          {
-            title: '店铺首页',
-            key: 'micro',
-            icon: require('../assets/staticIcon/homeUp.png'),
-            selectIcon: require('../assets/staticIcon/homeDown.png')
-          },
-          {title: '机台自提',
-            key: 'micro/market',
-            icon: require('../assets/staticIcon/activityUp.png'),
-            selectIcon: require('../assets/staticIcon/activityDown.png')
-          },
-          {
-            title: '个人中心',
-            key: 'user',
-            icon: require('../assets/staticIcon/userUp.png'),
-            selectIcon: require('../assets/staticIcon/userDown.png')
-          }
-        ]
       }
     },
     props: {
@@ -48,6 +30,10 @@
       }
     },
     computed: {
+      ...mapState({
+        menu: state => state.pageConfig.menu
+
+      }),
       route () {
         return this.$route.path
       }

@@ -37,15 +37,15 @@
     methods: {
       routeChange () {
         let path = this.$route.path
-        if (path === '/micro' || path === '/micro/market' || path.indexOf('/micro/market/') > -1 || path === '/user' || path === '/micro/cart') {
+        if (path === '/micro' || path === '/micro/home' || path === '/micro/market' || path.indexOf('/micro/market/') > -1 || path === '/micro/user' || path === '/micro/cart') {
           this.showNav = true
-          if (path === '/micro') {
+          if (path === '/micro' || path === '/micro/home') {
             this.selectIndex = 0
             localStorage.setItem('entry', 'device')
           } else if (path === '/micro/market' || path.indexOf('/micro/market/') > -1) {
             this.selectIndex = 1
             localStorage.setItem('entry', 'devices')
-          } else if (path === '/user') {
+          } else if (path === '/micro/user') {
             this.selectIndex = 2
           }
         } else {

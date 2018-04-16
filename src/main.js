@@ -12,8 +12,8 @@ Vue.use(ToastPlugin)
 Vue.use(AjaxPlugin)
 Vue.use(LoadingPlugin)
 
-// Vue.prototype.$http.defaults.baseURL = 'https://api.saiyaoyun.com/v2/'
-Vue.prototype.$http.defaults.baseURL = 'http://192.168.2.111:5020/v2/'
+Vue.prototype.$http.defaults.baseURL = 'https://api.saiyaoyun.com/v2/'
+// Vue.prototype.$http.defaults.baseURL = 'http://192.168.2.111:5020/v2/'
 
 FastClick.attach(document.body)
 

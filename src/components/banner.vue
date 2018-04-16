@@ -41,7 +41,6 @@
     },
     mounted () {
 
-
     },
     methods: {
     }

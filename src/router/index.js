@@ -16,7 +16,12 @@ const MAINPATH = '/micro'
 const router = new Router({
   routes: [
     {
-      path: MAINPATH,
+      path: MAINPATH ,
+      name: 'Index',
+      component: Index
+    },
+    {
+      path: MAINPATH + '/home' ,
       name: 'Index',
       component: Index
     },
@@ -31,7 +36,7 @@ const router = new Router({
       component: List
     },
     {
-      path: '/user',
+      path: MAINPATH + '/user',
       name: 'user',
       component: User
     },

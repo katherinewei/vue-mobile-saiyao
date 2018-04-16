@@ -5,7 +5,7 @@ import deviceAcions from './device/actions'
 import cartMutations from './cart/mutations'
 import detailAcions from './detail/actions'
 import detailMutations from './detail/mutations'
-
+import pageConfigMutations from './pageConfig/mutations'
 Vue.use(Vuex)
 const deviceGetters = {
   selectedDevice: state => state.currentDevice
@@ -52,11 +52,19 @@ const detail = {
   mutations: detailMutations
 }
 
+const pageConfig = {
+  state: {
+    menu: []
+  },
+  mutations: pageConfigMutations
+}
+
 const store = new Vuex.Store({
   modules: {
     device,
     cart,
-    detail
+    detail,
+    pageConfig
   }
 })
 
